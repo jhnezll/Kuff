@@ -1,6 +1,7 @@
 import PageLayout from "../components/PageLayout";
 import Dropdown from "../components/forms/Dropdown";
 import TextInput from "../components/forms/TextInput";
+import fb from "../util/firebase-config";
 
 export default function Home() {
 

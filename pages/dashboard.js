@@ -1,14 +1,34 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ProfileSquare from "../components/ProfileSquare";
+import fb from "../util/firebase-config";
 
+
+function useAccounts() {
+    const [accounts, setAccounts] = useState([])
+    var db = fb.firestore()
+
+    useEffect(() => {
+        db.collection("accounts").onSnapshot((snapshot => {
+            const newAccounts = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setAccounts(newAccounts)
+        }))
+    }, [])
+
+    return accounts
+}
 export default function Dashboard() {
-    return(
+    const accounts = useAccounts()
+
+    return (
         <div className="bg-gray-50 h-screen w-full">
-            <ProfileSquare
-                src="https://static.billboard.com/files/media/mark-wahlberg-marky-mark-1991-u-billboard-1548-1024x677.jpg"
-                username="Marky Mark"
-                onlineStatus="Online"
-            />
+            {accounts.map(account =>
+                <ProfileSquare
+                    username={account.username}
+                />
+            )}
         </div>
     )
 }
