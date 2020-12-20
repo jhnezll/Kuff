@@ -28,9 +28,10 @@ export default function Dashboard() {
     return (
         <div className="bg-gray-50 h-screen w-full">
             {accounts.map(account =>
+                //Notice it becomes account
                 <ProfileSquare
                     username={account.username}
-                    src="https://media1.popsugar-assets.com/files/thumbor/OjVl1xpKd_jZEIVgntaEWc11wts/fit-in/728xorig/filters:format_auto-!!-:strip_icc-!!-/2014/06/04/992/n/1922283/098360edccddc443_111311021/i/Pictures-Mark-Wahlberg-When-He-Marky-Mark.jpg"
+                    src={account.avatar}
                 />
             )}
         </div>
