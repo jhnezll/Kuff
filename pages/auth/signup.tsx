@@ -1,45 +1,53 @@
-import TextInput from "../../components/forms/TextInput";
 import React, {useState} from "react";
-import Button from "../../components/forms/Button";
-import fb from "../../util/firebase-config";
-import {useRouter} from "next/router";
+import StepOne from "../../components/signup/StepOne";
 
-const SignUp = () => {
+export default function SignUp() {
+    const [currentStepIndex, setCurrentStepIndex] = useState(0)
+    const [formData, setFormData] = useState({
+        email: "",
+        username: "",
+        age: "",
+        gender: "",
+    })
 
-    const router = useRouter()
-    const [error, setError] = useState(undefined)
-
-    function signUp(event) {
-        event.preventDefault()
-        if (event.target.password.value === event.target["confirm-password"].value) {
-            fb.auth().createUserWithEmailAndPassword(event.target.email.value, event.target.password.value)
-                .then(() => router.push('/private-page'))
-        } else {
-            setError("Passwords must match.")
-        }
-
+    const onContinue = (event) => {
+        setCurrentStepIndex(prevState => ++prevState)
+        console.log(formData)
     }
 
-    return <div className="flex justify-center items-center h-screen">
-        <div>
-            <div className="w-96 text-center rounded-lg border border-gray-200 p-8">
-                <form onSubmit={signUp} className="space-y-4" autoComplete="off">
-                    <h1 className="text-4xl font-bold">Sign up</h1>
-                    <TextInput label="Email" id="email" type="email" required/>
-                    <TextInput label="Password" type="password" id="password" error={error} required/>
-                    <TextInput label="Confirm Password" type="password" id="confirm-password"
-                               error={error} helperText={error} required/>
-                    <div className="text-right pt-4">
-                        <Button variant="filled" sizes="lg" color="primary" type="submit">Create account</Button>
-                    </div>
-                </form>
-            </div>
-            <div className="text-sm text-center mt-4">
-                🛠 Customize this page at <span className="inlineCode">/pages/auth/signup.tsx</span>
+    const steps = [
+        //Step 1
+        {
+            title: "Sign Up",
+            content: <StepOne
+                currentStep={currentStepIndex}
+                onContinue={onContinue}
+                formData={formData}
+                setFormData={setFormData}
+            />
+        },
+        {
+            title: "Details",
+            content: <StepOne
+                currentStep={currentStepIndex}
+                onContinue={onContinue}
+                formData={formData}
+                setFormData={setFormData}
+                // onBack={() => setCurrentStepIndex(0)}
+            />
+        }
+    ]
+
+    const currentStep = steps[currentStepIndex]
+
+    return(
+        <div className="h-screen flex justify-center items-center md:bg-gray-50">
+            <div className="p-8 md:border border-gray-200 rounded-lg md:shadow-lg max-w-xl w-full text-left bg-white">
+                <h1 className="text-4xl font-bold text-center text-gray-900">{currentStep.title}</h1>
+                <div className="mt-8">
+                    {currentStep.content}
+                </div>
             </div>
         </div>
-    </div>
-
+    )
 }
-
-export default SignUp
