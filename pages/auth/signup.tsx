@@ -16,14 +16,19 @@ export default function SignUp() {
 
     const onContinue = (event) => {
         event.preventDefault()
-        setCurrentStepIndex(prevState => ++prevState)
-        console.log(formData)
+        if (formData.password === formData.confirmPassword) {
+            setCurrentStepIndex(prevState => ++prevState)
+            console.log(formData)
+        } else {
+            alert("Passwords must match.")
+        }
+
     }
 
     const steps = [
         //Step 1
         {
-            title: "✌️ Create an Account",
+            title: "Create an Account ✌️",
             content: <StepOne
                 currentStep={currentStepIndex}
                 onContinue={onContinue}
@@ -33,7 +38,7 @@ export default function SignUp() {
         },
         // Step 2
         {
-            title: "😎 Profile Info",
+            title: "Profile Info 😎",
             content: <StepTwo
                 currentStep={currentStepIndex}
                 onContinue={onContinue}
@@ -43,7 +48,7 @@ export default function SignUp() {
             />
         },
         {
-            title: "👀 Review",
+            title: "Review 👀",
             content: <StepThree
                 currentStep={currentStepIndex}
                 onContinue={onContinue}

@@ -1,33 +1,38 @@
 import TextInput from "../forms/TextInput";
+import SelectInput from "../forms/SelectInput";
 import Steps from "./Steps";
 import React from "react";
 
 
 const StepTwo = ({currentStep, onContinue, onBack, formData, setFormData}) => {
 
-    console.log(formData)
+    const genders = ['', 'Male', 'Female', 'Other']
 
     return <form onSubmit={onContinue}>
         <div className="">
             <div className="">
+                {/*Name*/}
                 <TextInput label="Name" id="username" onChange={event => setFormData({
                     ...formData,
                     username: event.target.value
                 })} value={formData.username} required type="text"/>
             </div>
 
+            {/*Age*/}
             <div className="mt-4">
                 <TextInput label="Age" id="age" onChange={event => setFormData({
                     ...formData,
                     age: event.target.value
-                })} value={formData.age} required type="text"/>
+                })} value={formData.age} required type="number"/>
             </div>
 
+            {/*Gender*/}
             <div className="mt-4">
-                <TextInput label="Gender" id="gender" onChange={event => setFormData({
-                    ...formData,
-                    gender: event.target.value
-                })} value={formData.gender} required type="text"/>
+                <SelectInput values={genders} label="Gender" id="gender" value={formData.gender}
+                    onChange={event => setFormData({
+                        ...formData,
+                        gender: event.target.value
+                    })} required/>
             </div>
         </div>
 
