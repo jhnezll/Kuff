@@ -16,7 +16,6 @@ export default function StepOne({currentStep, onContinue, formData, setFormData}
     //     }
     // }
 
-
     return (
         <div>
             <form onSubmit={onContinue}>
@@ -44,7 +43,7 @@ export default function StepOne({currentStep, onContinue, formData, setFormData}
 
                 {/*Bottom of Forum*/}
                 <div className="flex justify-between items-center mt-10">
-                    <Steps step={currentStep + 1} totalSteps={2}/>
+                    <Steps step={currentStep + 1} totalSteps={3}/>
                     <div className="flex justify-between space-x-2">
                         <button type="submit"
                                 className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium

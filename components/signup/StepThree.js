@@ -3,32 +3,16 @@ import Steps from "./Steps";
 import React from "react";
 
 
-const StepTwo = ({currentStep, onContinue, onBack, formData, setFormData}) => {
+const StepThree = ({currentStep, onContinue, onBack, formData, setFormData}) => {
 
     console.log(formData)
 
     return <form onSubmit={onContinue}>
-        <div className="">
-            <div className="">
-                <TextInput label="Name" id="username" onChange={event => setFormData({
-                    ...formData,
-                    username: event.target.value
-                })} value={formData.username} required type="text"/>
-            </div>
-
-            <div className="mt-4">
-                <TextInput label="Age" id="age" onChange={event => setFormData({
-                    ...formData,
-                    age: event.target.value
-                })} value={formData.age} required type="text"/>
-            </div>
-
-            <div className="mt-4">
-                <TextInput label="Gender" id="gender" onChange={event => setFormData({
-                    ...formData,
-                    gender: event.target.value
-                })} value={formData.gender} required type="text"/>
-            </div>
+        <div className="space-y-4">
+            <h1>Name: {formData.username}</h1>
+            <h1>Email: {formData.email}</h1>
+            <h1>Age: {formData.age}</h1>
+            <h1>Gender: {formData.gender}</h1>
         </div>
 
         {/*Bottom of Forum*/}
@@ -50,4 +34,4 @@ const StepTwo = ({currentStep, onContinue, onBack, formData, setFormData}) => {
     </form>
 }
 
-export default StepTwo
+export default StepThree

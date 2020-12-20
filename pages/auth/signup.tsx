@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import StepOne from "../../components/signup/StepOne";
 import StepTwo from "../../components/signup/StepTwo";
+import StepThree from "../../components/signup/StepThree";
 
 export default function SignUp() {
     const [currentStepIndex, setCurrentStepIndex] = useState(0)
@@ -39,6 +40,16 @@ export default function SignUp() {
                 formData={formData}
                 setFormData={setFormData}
                 onBack={() => setCurrentStepIndex(0)}
+            />
+        },
+        {
+            title: "👀 Review",
+            content: <StepThree
+                currentStep={currentStepIndex}
+                onContinue={onContinue}
+                formData={formData}
+                setFormData={setFormData}
+                onBack={() => setCurrentStepIndex(1)}
             />
         }
     ]
