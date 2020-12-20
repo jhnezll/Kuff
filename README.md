@@ -34,7 +34,9 @@ other apps would make you believe. Kuff was built to fix that problem and bring 
 
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This stack is my absolute favorite. I feel very comfortable using React especially with the Next.js Framework. Tailwind
+is really easy to use and makes CSS super quick. Firebase is, in my honest opinion, the easiest to use backend experience
+while still being very powerful.
 * [🛠 Next.js](https://nextjs.org)
 * [🎨 Tailwind CSS](https://tailwindcss.com)
 * [🔥 Firebase ](https://firebase.google.com)

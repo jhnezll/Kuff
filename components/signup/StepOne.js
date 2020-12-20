@@ -4,8 +4,6 @@ import TextInput from "../forms/TextInput";
 import {useRouter} from "next/router";
 import fb from "../../util/firebase-config";
 
-
-
 export default function StepOne({currentStep, onContinue, formData, setFormData}) {
     const {error, setError} = useState()
 
@@ -13,7 +11,6 @@ export default function StepOne({currentStep, onContinue, formData, setFormData}
         event.preventDefault()
         if (event.target.password.value === event.target["confirm-password"].value) {
             fb.auth().createUserWithEmailAndPassword(event.target.email.value, event.target.password.value)
-                .then(onContinue())
         } else {
             setError("Passwords must match.")
         }
@@ -25,16 +22,22 @@ export default function StepOne({currentStep, onContinue, formData, setFormData}
                 <div className="space-y-4" autoComplete="off">
 
                     {/*Email and Password*/}
-                    <TextInput label="Email" id="email" type="email" required/>
+                    <TextInput id="email" onChange={event => setFormData(prevState => ({
+                        ...prevState,
+                        email: event.value
+                    }))} value={formData.email} autoComplete="email" label="Email" required type="email"/>
+
+                    <h1>{formData.email}</h1>
+
                     <TextInput label="Password" type="password" id="password" error={error} required/>
-                    <TextInput label="Confirm Password" type="password" id="confirm-password" error={error} helperText={error} required/>
+                    <TextInput label="Confirm Password" type="password" id="confirm-password" error={error} required/>
 
                     <h3 className="mt-6 text-gray-400 text-sm">By continuing you agree to Kuff's Terms and Conditions</h3>
                 </div>
 
                 {/*Bottom of Forum*/}
                 <div className="flex justify-between items-center mt-10">
-                    <Steps step={currentStep + 1} totalSteps={1}/>
+                    <Steps step={currentStep + 1} totalSteps={2}/>
                     <div className="flex justify-between space-x-2">
                         <button type="submit"
                                 className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium
