@@ -15,11 +15,11 @@ interface Props {
     disabled?: boolean
 }
 
-const TextInput: React.FC<Props> = ({label, error, helperText, required, ...props}) => {
+const TextInput: React.FC<Props> = ({label, error, helperText, onChange, required, ...props}) => {
 
     const elementId = useRef(null)
 
-    const classNames = `border-gray-300 text-gray-800 placeholder-gray-300 focus:border-primary-400 focus:shadow-outline-primary`
+    const classNames = `border-gray-300 text-gray-800 placeholder-gray-300 focus:border-purple-400 focus:shadow-outline-purple`
     const errorClassnames = "border-red-300 text-red-800 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red"
 
 
